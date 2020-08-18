@@ -1,0 +1,6 @@
+hot_coffee is prepared
+green_tea cannot be prepared because green_mixture is not available
+black_tea is prepared
+sugar_syrup quantity is running low : 0
+Stock of sugar_syrup refilled, current quantity: 0
+hot_tea cannot be prepared because hot_water is not sufficient

@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+    Parser class for parsing the input json data, and storing it the specified structure
+ */
+
 public class InputParser {
         public static Integer outletCount;
         public static Integer taskCount;
@@ -13,16 +17,17 @@ public class InputParser {
     public static void parse(Ingredients stock, DrinkList drinkList, ArrayList<String> taskOrder) throws  Exception {
         taskCount = 0;
 
-        Object obj = JsonParser.parseReader(new FileReader("input/input.json"));
+        //Update the input file name here.
+        Object obj = JsonParser.parseReader(new FileReader("input/count5bev4.json"));
         JsonObject jsonObj = (JsonObject) obj;
 
         JsonObject machineObj = jsonObj.getAsJsonObject("machine");
+
         JsonObject outletObj = machineObj.getAsJsonObject("outlets");
 
         JsonElement outletElem = outletObj.get("count_n");
         Integer outlet = outletElem.getAsInt();
 
-        //parse Stock related data
         parseStockData(stock, machineObj);
 
         //parse every beverage ingredient data
@@ -32,6 +37,7 @@ public class InputParser {
         outletCount = outlet;
     }
 
+    //Parse Stock - Total item quantity data from input file
     private static void parseStockData(Ingredients stock, JsonObject machineObj){
         JsonObject quantObj = machineObj.getAsJsonObject("total_items_quantity");
 
@@ -44,6 +50,7 @@ public class InputParser {
         }
     }
 
+    //Parse Beverages list data from the input list
     private static void parseDrinkData(DrinkList drinkList, JsonObject bevObj, ArrayList<String> taskOrder){
 
         Iterator itItem = bevObj.keySet().iterator();

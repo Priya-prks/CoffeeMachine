@@ -1,32 +1,50 @@
 import java.util.Hashtable;
-import java.util.Set;
+
+/*
+    This is a singleton class, to store the possible drinks that can be made
+    and its ingredients along with its quantity
+ */
 
 public class DrinkList {
 
+    //Map of Drink name, and its Ingredient list (name, quantity)
     private static Hashtable<String, Ingredients> drinksList = null;
-    private static DrinkList list = null;
+    private static DrinkList drinkListInstance = null;
 
     DrinkList(){
         drinksList = new Hashtable<>();
     }
 
-    //Singleton - double lock
+    /*
+        Singleton class : because this serve as the task list for the coffee machine.
+        So there should be only one object. This task list data can be updated if required
+     */
     public static DrinkList getInstance(){
-        if(list == null){
-            list = new DrinkList();
+        if(drinkListInstance == null){
+            synchronized (DrinkList.class){
+                if(drinkListInstance == null){
+                    drinkListInstance = new DrinkList();
+                }
+            }
+
         }
-        return list;
+        return drinkListInstance;
     }
 
+    /*
+        Add drinkname, and its ingredient name-quantity data to the map
+     */
     public void setData(String name, Ingredients ing){
         drinksList.put(name, ing);
     }
 
-    public Set<String> getBeverageList(){
+    /*public Set<String> getBeverageList(){
         return drinksList.keySet();
-    }
+    }*/
 
-    //Error check if this item does not exist in the list
+    /*
+        Returns the ingredients name, quantity for a given drink name
+     */
     public Ingredients getIngredients(String name){
         if(drinksList.containsKey(name)){
             return drinksList.get(name);
@@ -34,6 +52,7 @@ public class DrinkList {
         return null;
     }
 
+    //API which can be used if we need to add more drinks to the menu on runtime. Out of scope for current cases
     /*public void addTask(String name, Ingredients items){
         drinksList.put(name, items);
     }*/

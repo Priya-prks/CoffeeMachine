@@ -1,0 +1,14 @@
+hot_tea is prepared
+black_tea is prepared
+hot_coffee is prepared
+green_tea cannot be prepared because green_mixture is not available
+white_tea is prepared
+green_tea2 is prepared
+green_mixture2 quantity is running low : 0
+Stock of green_mixture2 refilled, current quantity: 0
+ginger_syrup quantity is running low : 0
+Stock of ginger_syrup refilled, current quantity: 0
+assam_tea is prepared
+masala_tea cannot be prepared because sugar_syrup is not sufficient
+tulsi_tea cannot be prepared because hot_water is not sufficient
+kadha cannot be prepared because hot_water is not sufficient
